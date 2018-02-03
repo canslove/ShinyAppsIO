@@ -11,7 +11,7 @@
 ## Header content ----------------------
 header <- dashboardHeader(
   #title = "Top Streamed Songs on Spotify", titleWidth = 450, #icon = icon("headphones"),
-  title = "Analysis of Top Streamed Songs and Artists on Spotify", titleWidth = 600, 
+  title = "Analysis of Top Streamed Songs and Artists on Spotify", titleWidth = 600,
   # Messages menu
   # dropdownMenu(type = "messages",
   #              messageItem(
@@ -64,6 +64,9 @@ header <- dashboardHeader(
 
 ## icon refer to : http://fontawesome.io/icons/
 sidebar <- dashboardSidebar(
+  sidebarUserPanel(em('Donghyun Kang'), subtitle = tags$i("Data Scientist"),
+                   image="https://avatars1.githubusercontent.com/u/35157973?s=460&v=4"),
+  
   sidebarMenu(
     menuItem("Sourses", tabName = "sourses", icon = icon("headphones")), # Summary of data sets
     menuItem("Insights", tabName = "insights", icon = icon("list")), # Points
@@ -95,34 +98,40 @@ sidebar <- dashboardSidebar(
 
 ## Body content ------------------------
 body <- dashboardBody(
+  
   tabItems(
     # Summary of data sets
     tabItem(tabName = "sourses",
-            fluidPage(
+            fluidPage(theme = shinytheme(ShinyThemeName),
               #h3("Summary of the data sets"),
               # box(
               #   title = "Summary of the data sets", background = Titlecolor, solidHeader = TRUE
               # ),#box
-              img(src="http://www.bassheadspeakers.com/wp-content/uploads/2016/07/Best-over-ear-bluetooth-headphones-of-2016-820x461.jpg"                  )
+              h1("Intelligent Music Streaming Service"),
+              em(" based on the analysis of"),
+              h3(" Top streams-Songs and Artists on Spotify "),
+              img(src="http://www.bassheadspeakers.com/wp-content/uploads/2016/07/Best-over-ear-bluetooth-headphones-of-2016-820x461.jpg"),
+              br(),
+              h4("Donghyun Kang (dhyun.kang@gmail.com)")
             )#fluidPage
     ),#tabItem-Sources
     
     # Insights - tab? box? text?
     tabItem(tabName = "insights",
-            # tab box
             fluidRow(
-              # box(
-              #   title = "Insights", background = "black", solidHeader = TRUE,
-              #   width = 3
-              # ) # box
-              img(src="https://static1.squarespace.com/static/54c02777e4b022a64cd11524/t/553569a7e4b07ea1b733fd16/1429563818269/")
-            ) # fluidRow
+              box(
+                title = "Insights", solidHeader = TRUE, width = 6
+              ),#box
+              box(width = 6,
+                  img(src="https://static1.squarespace.com/static/54c02777e4b022a64cd11524/t/553569a7e4b07ea1b733fd16/1429563818269/", width = 640, height = 480)
+              )#box
+            )#fluidRow
     ),##tabItem-Insights
     
     # Analysis
     tabItem(tabName = "analysis",
             # tab box
-            fluidRow(
+            fluidRow(theme = shinytheme(ShinyThemeName),
               box(
                 #title = "Controls2", 
                 background = "black", solidHeader = TRUE, width = 3,
@@ -263,7 +272,7 @@ body <- dashboardBody(
     # Discovery
     tabItem(tabName = "discovery",
             # tab box
-            fluidRow(
+            fluidRow(theme = shinytheme(ShinyThemeName),
               tabBox(
                 title = "Relationship",
                 # The id lets us use input$tabset2 on the server to find the current tab
@@ -296,11 +305,13 @@ body <- dashboardBody(
     # Limitation - Blind Spots
     tabItem(tabName = "limitation",
             # Boxes need to be put in a row (or column)
-            fluidRow(
+            fluidRow(theme = shinytheme(ShinyThemeName),
               box(
-                title = "Blind spots", background = Titlecolor, solidHeader = TRUE
+                title = "Blind spots", background = Titlecolor, solidHeader = TRUE, width = 6
               ),#box
-              img(src="http://images.clipartpanda.com/limitation-clipart-limitation-plane1.jpg", width = 960, height = 640)
+              box(width = 6,
+                  img(src="http://images.clipartpanda.com/limitation-clipart-limitation-plane1.jpg", width = 640, height = 480)
+              )#box
             )#fluidRow
     ),#tabItem-Limitation
     
@@ -309,9 +320,11 @@ body <- dashboardBody(
             # Boxes need to be put in a row (or column)
             fluidRow(
               box(
-                title = "Further Work", background = Titlecolor, solidHeader = TRUE
+                title = "Further Work", background = Titlecolor, solidHeader = TRUE, width = 6
               ),#box
-              img(src="http://unidosxisrael.org/wp-content/uploads/2016/12/19los10consejos.jpg")
+              box(width = 6,
+                  img(src="http://unidosxisrael.org/wp-content/uploads/2016/12/19los10consejos.jpg")
+              )# box
             )#fluidRow
     ),#tabItem-Futurework
     
@@ -339,7 +352,7 @@ body <- dashboardBody(
             #   checkboxInput("show", "Show States", value = FALSE)
             # ), #fluidPage
             
-            bootstrapPage(
+            bootstrapPage(theme = shinytheme(ShinyThemeName),
               tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
               leafletOutput("worldmap"),
               #leafletOutput("worldmap", width = "100%", height = "100%"),
@@ -360,7 +373,7 @@ body <- dashboardBody(
     # Widgets
     tabItem(tabName = "widgets",
             h2("Widgets tab content"),
-            fluidRow(
+            fluidRow(theme = shinytheme(ShinyThemeName)
               #leafletOutput("dymap"),
               # absolutePanel(top = 10, right = 10,
               #               sliderInput("range", "Magnitudes", min(quakes$mag), max(quakes$mag),

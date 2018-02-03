@@ -1,4 +1,5 @@
 library(shiny)
+library(shinythemes)
 library(shinydashboard)
 library(data.table)
 library(dplyr) # data manupulation
@@ -159,5 +160,9 @@ nmRawdf = names(raw.df)
 #rawInitArtist = unique(raw.df %>% filter(DATE > "2017-01-01" & DATE < "2017-01-31") %>% select(ARTIST))
 rawInitArtist = unique(raw.df %>% select(ARTIST))
 ## Plotly with shiny =============================================================
+
+
+ShinyThemeName = "united" # cerulean, cosmo, cyborg, darkly, flatly, journal, lumen, paper, readable, sandstone, simplex, slate, spacelab, superhero, united, yeti
+
 
 #shinyApp(ui, server)
